@@ -1,0 +1,16 @@
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { EmailService } from './email.service';
+
+@Controller('email')
+export class EmailController {
+
+  constructor(private readonly emailService:EmailService){}
+
+  @Post()
+    sendEmail(@Body() res){
+      this.emailService.mailable(res)
+      return {message:'"mensaje enviado correctamente"'}
+    }
+
+   
+}
